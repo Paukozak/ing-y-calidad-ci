@@ -36,3 +36,17 @@ jobs:
         env:
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
+
+      - name: Notificar deploy exitoso a Slack
+        if: success()
+        run: |
+          curl -X POST ${{ secrets.SLACK_WEBHOOK_URL }} \
+          -H 'Content-type: application/json' \
+          --data '{"text":"✅ Deploy exitoso a producción!\nRepositorio: ${{ github.repository }}\nCommit: ${{ github.sha }}"}'
+
+      - name: Notificar fallo a Slack
+        if: failure()
+        run: |
+          curl -X POST ${{ secrets.SLACK_WEBHOOK_URL }} \
+          -H 'Content-type: application/json' \
+          --data '{"text":"❌ Falló el pipeline!\nRepositorio: ${{ github.repository }}\nCommit: ${{ github.sha }}"}'
