@@ -21,3 +21,15 @@ jobs:
 
       - name: Correr los tests
         run: node test/test.js
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: test
+    if: github.ref == 'refs/heads/main'
+
+    steps:
+      - name: Obtener el código
+        uses: actions/checkout@v3
+
+      - name: Deploy a Vercel
+        run: npx vercel --prod --token=${{ secrets.VERCEL_TOKEN }} --project-id=${{ secrets.VERCEL_PROJECT_ID }} --scope=${{ secrets.VERCEL_ORG_ID }} --yes
