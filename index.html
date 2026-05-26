@@ -2,11 +2,75 @@
 <html lang="es">
   <head>
     <meta charset="UTF-8" />
-    <title>Mundo CI</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hola Mundo CI</title>
+    <style>
+      * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      body {
+        font-family: 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+        background-color: #f0f4f8;
+        color: #333;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        min-height: 100vh;
+      }
+
+      .card {
+        background-color: #ffffff;
+        padding: 3rem; 
+        border-radius: 16px;
+        box-shadow: 0 10px 25px rgba(0, 0, 0, 0.08);
+        text-align: center;
+        max-width: 800px; 
+        width: 90%;
+      }
+
+      h1 {
+        color: #1a202c;
+        font-size: 2.5rem; 
+        margin-bottom: 1rem;
+      }
+      p {
+        color: #4a5568;
+        line-height: 1.6;
+        margin-bottom: 0.8rem;
+        font-size: 1.15rem; 
+      }
+      .highlight {
+        font-weight: 600;
+        color: #3182ce; 
+      }
+
+     
+      .image-placeholder {
+        margin-top: 1.5rem;
+        width: 100%;
+        max-width: 700px; 
+        border-radius: 12px;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+        display: block;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    </style>
   </head>
   <body>
-    <h1>Mundo</h1>
-    <p>Este proyecto usa Integración Continua con GitHub Actions y Vercel.</p>
-    <p>Cambio owo</p>
+    
+    <div class="card">
+      <h1>Hola Mundo</h1>
+      <p>Este proyecto usa Integración Continua con <span class="highlight">GitHub Actions</span> y <span class="highlight">Vercel</span>.</p>
+      
+      <img 
+        class="image-placeholder" 
+        src="ci_ingycalidad.png" 
+        alt="Foto CI Ingeniería y Calidad" 
+      />
+    </div>
+
   </body>
 </html>
