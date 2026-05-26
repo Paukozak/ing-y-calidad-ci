@@ -8,7 +8,6 @@ if (!fs.existsSync("./index.html")) {
 
 // test: el archivo contiene la palabra "Hola"
 const contenido = fs.readFileSync("./index.html", "utf8");
-console.log("ESTO ES LO QUE LEE EL SCRIPT:\n", contenido);
 if (!contenido.includes("Hola")) {
   console.error("FALLO: index.html no contiene la palabra 'Hola'");
   process.exit(1);
@@ -16,3 +15,5 @@ if (!contenido.includes("Hola")) {
 
 
 console.log("OK: index.html existe y contiene 'Hola'");
+
+//node test/test.js
