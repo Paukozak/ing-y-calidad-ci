@@ -20,14 +20,20 @@ jobs:
           node-version: "22"
 
       - name: Correr los tests
+        id: tests
         run: node test/test.js
+        continue-on-error: true
 
       - name: Notificar fallo de tests a Slack
-        if: ${{ failure() }}
+        if: steps.tests.outcome == 'failure'
         run: |
-          curl -X POST "${{ secrets.SLACK_WEBHOOK_URL }}" \
+          curl -X POST ${{ secrets.SLACK_WEBHOOK_URL }} \
           -H 'Content-type: application/json' \
-          --data '{"text":"❌ Fallaron los tests! No se va a deployar.\nRepositorio: ${{ github.repository }}\nCommit: ${{ github.sha }}"}
+          --data '{"text":"❌ Fallaron los tests! No se va a deployar.\nRepositorio: ${{ github.repository }}\nCommit: ${{ github.sha }}"}'
+
+      - name: Fallar el job si los tests fallaron
+        if: steps.tests.outcome == 'failure'
+        run: exit 1
 
   deploy:
     runs-on: ubuntu-latest
