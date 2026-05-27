@@ -52,8 +52,8 @@ jobs:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
         with:
           args: >
-            -Dsonar.projectKey=TU_PROJECT_KEY
-            -Dsonar.organization=TU_ORGANIZATION_KEY
+            -Dsonar.projectKey=Paukozak_ing-y-calidad-ci
+            -Dsonar.organization=paukozak
 
 
   deploy:
