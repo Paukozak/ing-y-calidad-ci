@@ -35,6 +35,27 @@ jobs:
         if: steps.tests.outcome == 'failure'
         run: exit 1
 
+  sonar:
+    runs-on: ubuntu-latest
+    needs: test
+
+    steps:
+      - name: Obtener el código
+        uses: actions/checkout@v3
+        with:
+          fetch-depth: 0
+
+      - name: Análisis de SonarCloud
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        with:
+          args: >
+            -Dsonar.projectKey=TU_PROJECT_KEY
+            -Dsonar.organization=TU_ORGANIZATION_KEY
+
+
   deploy:
     runs-on: ubuntu-latest
     needs: test
