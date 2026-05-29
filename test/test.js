@@ -39,3 +39,5 @@ if (hayFallos) {
 }
 
 //node test/test.js
+
+//agregar que error es cuando se deploya tipo que test falla
