@@ -91,7 +91,9 @@ node test/test.js
 
 ---
 
-## 🧪 Pruebas automatizadas (Spec Driven Development)
+## 🧪 Pruebas basadas en especificación
+
+El archivo SPEC.md define los requisitos funcionales del sistema en lenguaje simple. El script test/test.js lo lee dinámicamente y valida que index.html los cumpla. Si se agrega un nuevo requisito a SPEC.md, el test lo evalúa automáticamente sin modificar el código de prueba.
 
 El archivo [`SPEC.md`](./SPEC.md) define los requisitos funcionales del proyecto en lenguaje simple, por ejemplo:
 
