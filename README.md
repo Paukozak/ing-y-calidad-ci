@@ -91,15 +91,21 @@ node test/test.js
 
 ---
 
-## 🧪 Pruebas basadas en especificación
+## 🧪 Pruebas automatizadas
 
-El archivo [`SPEC.md`](./SPEC.md) documenta los requisitos funcionales del sistema (RF-01 a RF-03) siguiendo prácticas de **Spec Driven Development**. El script [`test/test.js`](./test/test.js) implementa esos mismos requisitos como verificaciones directas:
+El script [`test/test.js`](./test/test.js) valida los siguientes requisitos del sistema:
 
-- RF-01: debe existir el archivo `index.html`.
-- RF-02: `index.html` debe contener la palabra "Integración".
-- RF-03: `index.html` debe contener la palabra "Entrega".
+- Debe existir el archivo `index.html`.
+- `index.html` debe contener la palabra "Integración".
+- `index.html` debe contener la palabra "Entrega".
 
 Por cada requisito, el test reporta `OK` o `FALLO` y finaliza con código de salida `1` si alguno no se cumple, deteniendo así el pipeline.
+
+---
+
+## 📄 Especificación (SDD)
+
+Por separado, el archivo [`SPEC.md`](./SPEC.md) documenta la especificación funcional del sistema siguiendo prácticas de **Spec Driven Development (SDD)**: describe el proyecto, sus requisitos funcionales y no funcionales, y los criterios de aceptación.
 
 ---
 
@@ -109,7 +115,7 @@ El workflow [`.github/workflows/ci.yml`](./.github/workflows/ci.yml) se ejecuta 
 
 ### 1. `test`
 - Instala Node.js 22.
-- Corre `node test/test.js`, que valida los requisitos definidos en `SPEC.md`.
+- Corre `node test/test.js`, que valida los requisitos del sistema.
 - Si falla, envía una notificación a Slack y detiene el pipeline (los jobs siguientes no se ejecutan).
 
 ### 2. `sonar`
