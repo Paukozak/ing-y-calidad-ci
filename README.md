@@ -31,7 +31,7 @@ Como agregados, se incorporan herramientas de inspección de código (**SonarClo
       ▼
  GitHub Actions (servidor de IC)
       │
-      ├──► Job "test"   → corre test/test.js contra SPEC.md
+      ├──► Job "test"   → corre test/test.js (valida los requisitos del sistema)
       │         │
       │         └─ si falla ──► Notificación a Slack ❌ y se detiene el pipeline
       │
@@ -67,7 +67,7 @@ Como agregados, se incorporan herramientas de inspección de código (**SonarClo
 ├── index.html                 # Aplicación (front-end estático)
 ├── ci_cd_ingycalidad.png       # Esquema del entorno
 ├── SPEC.md                     # Especificación (Spec Driven Development)
-├── test/test.js                # Test que valida la app contra SPEC.md
+├── test/test.js                # Test que valida los requisitos del sistema
 └── package.json
 ```
 
@@ -93,17 +93,13 @@ node test/test.js
 
 ## 🧪 Pruebas basadas en especificación
 
-El archivo SPEC.md define los requisitos funcionales del sistema en lenguaje simple. El script test/test.js lo lee dinámicamente y valida que index.html los cumpla. Si se agrega un nuevo requisito a SPEC.md, el test lo evalúa automáticamente sin modificar el código de prueba.
+El archivo [`SPEC.md`](./SPEC.md) documenta los requisitos funcionales del sistema (RF-01 a RF-03) siguiendo prácticas de **Spec Driven Development**. El script [`test/test.js`](./test/test.js) implementa esos mismos requisitos como verificaciones directas:
 
-El archivo [`SPEC.md`](./SPEC.md) define los requisitos funcionales del proyecto en lenguaje simple, por ejemplo:
+- RF-01: debe existir el archivo `index.html`.
+- RF-02: `index.html` debe contener la palabra "Integración".
+- RF-03: `index.html` debe contener la palabra "Entrega".
 
-```
-- debe existir el archivo index.html
-- debe contener la palabra Integración
-- debe contener la palabra Entrega
-```
-
-El script [`test/test.js`](./test/test.js) **lee `SPEC.md` dinámicamente**, interpreta cada requisito y valida que `index.html` lo cumpla, reportando ✅/❌ por cada uno. De esta forma la especificación es la fuente de verdad: si se agrega un nuevo requisito a `SPEC.md`, el test lo evalúa automáticamente sin tener que reescribir el código de prueba.
+Por cada requisito, el test reporta `OK` o `FALLO` y finaliza con código de salida `1` si alguno no se cumple, deteniendo así el pipeline.
 
 ---
 
@@ -113,7 +109,7 @@ El workflow [`.github/workflows/ci.yml`](./.github/workflows/ci.yml) se ejecuta 
 
 ### 1. `test`
 - Instala Node.js 22.
-- Corre `node test/test.js` contra `SPEC.md`.
+- Corre `node test/test.js`, que valida los requisitos definidos en `SPEC.md`.
 - Si falla, envía una notificación a Slack y detiene el pipeline (los jobs siguientes no se ejecutan).
 
 ### 2. `sonar`
