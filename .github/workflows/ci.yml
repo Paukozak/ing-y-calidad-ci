@@ -24,9 +24,10 @@ jobs:
         run: |
           set +e
           output=$(node test/test.js 2>&1)
+          exit_code=$?
           echo "$output"
-          if echo "$output" | grep -q "❌"; then
-            fallos=$(echo "$output" | grep "❌ FALLO")
+          if [ $exit_code -ne 0 ]; then
+            fallos=$(echo "$output" | grep "FALLO")
             curl -X POST ${{ secrets.SLACK_WEBHOOK_URL }} \
             -H 'Content-type: application/json' \
             --data "$(jq -n --arg fallos "$fallos" --arg repo "${{ github.repository }}" --arg sha "${{ github.sha }}" \
