@@ -56,6 +56,7 @@ jobs:
             -Dsonar.projectKey=Paukozak_ing-y-calidad-ci
             -Dsonar.organization=paukozak
             -Dsonar.coverage.exclusions=test/**
+            -Dsonar.qualitygate.wait=true
 
 
   deploy:

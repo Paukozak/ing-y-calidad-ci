@@ -26,3 +26,5 @@ if (hayFallos) {
 }
 
 //node test/test.js
+
+eval("console.log('test')");
