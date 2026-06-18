@@ -1,4 +1,4 @@
-const fs = require("fs");
+const fs = require("fs"); //importa el modulo fs que permite leer archivos del disco
 
 let hayFallos = false;
 
@@ -20,7 +20,7 @@ check(contenido.includes("Entrega"), "debe contener la palabra Entrega");
 
 if (hayFallos) {
   console.error("\n❌ Algunos requisitos no se cumplen");
-  process.exit(1);
+  process.exit(1); //para que github actions sepa que fallo
 } else {
   console.log("\n✅ Todos los requisitos se cumplen");
 }

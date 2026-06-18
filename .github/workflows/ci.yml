@@ -12,17 +12,17 @@ jobs:
 
     steps:
       - name: Obtener el código
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Instalar Node.js
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v4
         with:
           node-version: "22"
 
       - name: Correr los tests
         id: tests
-        run: |
-          set +e
+        run: | 
+          set +e 
           output=$(node test/test.js 2>&1)
           exit_code=$?
           echo "$output"
@@ -41,9 +41,9 @@ jobs:
 
     steps:
       - name: Obtener el código
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
-          fetch-depth: 0
+          fetch-depth: 0 #descarga todo el historial de commits
 
       - name: Análisis de SonarCloud
         uses: SonarSource/sonarcloud-github-action@383f7e52eae3ab0510c3cb0e7d9d150bbaeab838 #v3.1.0
@@ -64,10 +64,10 @@ jobs:
 
     steps:
       - name: Obtener el código
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
 
       - name: Deploy a Vercel
-        run: npx vercel --prod --token=${{ secrets.VERCEL_TOKEN }} --yes
+        run: npx vercel --prod --token=${{ secrets.VERCEL_TOKEN }} --yes #npx descarga vercel temporalmente lo ejecuta y lo descarta
         env:
           VERCEL_PROJECT_ID: ${{ secrets.VERCEL_PROJECT_ID }}
           VERCEL_ORG_ID: ${{ secrets.VERCEL_ORG_ID }}
