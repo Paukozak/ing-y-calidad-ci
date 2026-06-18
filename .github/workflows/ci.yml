@@ -50,6 +50,7 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_SCANNER_OPTS: "-Dsonar.qualitygate.wait=true"
         with:
           args: >
             -Dsonar.projectKey=Paukozak_ing-y-calidad-ci
